@@ -62,7 +62,6 @@ button{font-family:var(--fb);cursor:pointer}
 @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 
 /* ── shared ── */
 .wrap{max-width:1200px;margin:0 auto;padding:0 40px}
@@ -109,15 +108,10 @@ h2.title{font-family:var(--ff);font-size:clamp(2rem,4vw,3.1rem);font-weight:700;
 .hero h1{font-family:var(--ff);font-size:clamp(2.7rem,5.4vw,4.6rem);font-weight:800;line-height:1.02;letter-spacing:-2px;margin:22px 0 20px;opacity:0;animation:rise .8s .24s forwards}
 .hero h1 em{font-style:normal}
 .hero-lead{font-size:1.08rem;color:var(--muted);font-weight:300;max-width:480px;opacity:0;animation:rise .8s .4s forwards}
-.hero-phone{display:inline-flex;flex-direction:column;gap:2px;margin:28px 0;padding:16px 24px;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);opacity:0;animation:rise .8s .52s forwards}
-.hero-phone span{font-family:var(--ff);font-size:.62rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted2)}
-.hero-phone a{font-family:var(--ff);font-size:1.5rem;font-weight:700}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:rise .8s .64s forwards}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px;opacity:0;animation:rise .8s .64s forwards}
 .btn-p{display:inline-flex;align-items:center;gap:9px;background:var(--grad);color:#fff;padding:15px 30px;border:none;border-radius:100px;font-family:var(--ff);font-size:.86rem;font-weight:600;transition:transform .2s,box-shadow .2s;box-shadow:0 14px 30px -12px rgba(31,111,178,.65)}
 .btn-p:hover{transform:translateY(-2px);box-shadow:0 18px 36px -12px rgba(31,111,178,.75)}
 .btn-p svg{transition:transform .2s}.btn-p:hover svg{transform:translateX(4px)}
-.btn-o{display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--blue-d);padding:15px 30px;border:1.5px solid var(--border);border-radius:100px;font-family:var(--ff);font-size:.86rem;font-weight:600;transition:.2s}
-.btn-o:hover{border-color:var(--blue-l);background:var(--bg-blue)}
 
 /* hero visual card stack */
 .hero-visual{position:relative;opacity:0;animation:fade 1s .5s forwards}
@@ -212,13 +206,10 @@ h2.title{font-family:var(--ff);font-size:clamp(2rem,4vw,3.1rem);font-weight:700;
 .cta::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) 1.5px,transparent 1.5px);background-size:30px 30px;mask-image:radial-gradient(ellipse 70% 90% at 50% 50%,#000,transparent)}
 .cta-inner{position:relative;z-index:2;text-align:center;color:#fff;padding:96px 0}
 .cta h2{font-family:var(--ff);font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-1px}
-.cta p{opacity:.9;font-weight:300;max-width:520px;margin:16px auto 8px}
-.cta-phone{font-family:var(--ff);font-size:1.6rem;font-weight:700;margin:18px 0 30px;display:inline-block}
-.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta p{opacity:.9;font-weight:300;max-width:520px;margin:16px auto 0}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:32px}
 .btn-w{display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--blue-d);padding:15px 32px;border-radius:100px;font-family:var(--ff);font-size:.88rem;font-weight:600;transition:transform .2s}
 .btn-w:hover{transform:translateY(-2px)}
-.btn-wl{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.4);color:#fff;padding:15px 32px;border-radius:100px;font-family:var(--ff);font-size:.88rem;font-weight:600;transition:.2s}
-.btn-wl:hover{background:rgba(255,255,255,.22)}
 
 /* ═══ FOOTER ═══ */
 footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-top:1px solid var(--border)}
@@ -239,7 +230,6 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
 .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:150;display:none;gap:10px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-top:1px solid var(--border)}
 .sticky-cta a{flex:1;text-align:center;padding:13px;border-radius:100px;font-family:var(--ff);font-size:.86rem;font-weight:600}
 .sticky-est{background:var(--grad);color:#fff}
-.sticky-txt{background:var(--bg-soft);color:var(--blue-d);border:1px solid var(--border)}
 
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:960px){
@@ -264,7 +254,12 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
   .hero-badge{display:none}
   .hero-card-body{padding-right:0}
   .sticky-cta{display:flex}
-  body{padding-bottom:70px}
+  body{padding-bottom:86px}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+  .hero-eyebrow,.hero h1,.hero-lead,.hero-btns,.hero-visual{opacity:1}
 }
 </style>
 </head>
@@ -547,7 +542,6 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
         <div class="fcol-ttl">Contact</div>
         <div class="foot-list">
           <a class="foot-phone" href="tel:19542742055">(954) 274-2055</a>
-          <a href="sms:19542742055">Text us for a free estimate</a>
           <!-- [PLACEHOLDER: e-mail — cliente ainda não forneceu; substituir depois] -->
           <span style="color:var(--muted2)">Email — coming soon</span>
           <span style="color:var(--muted)">Rosangela Souza</span>
