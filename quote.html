@@ -101,15 +101,16 @@ img{display:block;max-width:100%;height:auto}
 .field.bad .err-msg{display:block}
 /* segmented (radio-like) */
 .seg{display:flex;gap:10px;flex-wrap:wrap}
-.seg label{flex:1;min-width:90px;margin:0}
-.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{flex:1;min-width:90px;margin:0;position:relative}
+.seg input{position:absolute;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none}
 .seg span{display:flex;align-items:center;justify-content:center;gap:7px;padding:11px 10px;border:1.5px solid var(--border);border-radius:11px;background:var(--bg-mist);font-family:var(--ff);font-size:.82rem;font-weight:500;transition:.18s;text-align:center}
 .seg input:checked + span{border-color:var(--green);background:var(--bg-soft);color:var(--green-d)}
 .seg input:focus-visible + span{box-shadow:0 0 0 4px rgba(31,111,178,.12)}
 
 /* actions */
 .q-actions{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:26px}
-.btn-p{display:inline-flex;align-items:center;gap:9px;background:var(--grad);color:#fff;padding:14px 28px;border:none;border-radius:100px;font-family:var(--ff);font-size:.86rem;font-weight:600;transition:transform .2s,box-shadow .2s;box-shadow:0 14px 30px -12px rgba(31,111,178,.6)}
+.q-spacer{flex:1}
+.btn-p{display:inline-flex;align-items:center;justify-content:center;gap:9px;white-space:nowrap;background:var(--grad);color:#fff;padding:14px 28px;border:none;border-radius:100px;font-family:var(--ff);font-size:.86rem;font-weight:600;transition:transform .2s,box-shadow .2s;box-shadow:0 14px 30px -12px rgba(31,111,178,.6)}
 .btn-p:hover{transform:translateY(-2px);box-shadow:0 18px 36px -12px rgba(31,111,178,.72)}
 .btn-p[disabled]{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
 .btn-p svg{transition:transform .2s}.btn-p:hover svg{transform:translateX(3px)}
@@ -142,6 +143,10 @@ img{display:block;max-width:100%;height:auto}
   .q-form{padding:6px 20px 24px}
   .q-progress{padding:20px 20px 0}
   .q-progress-lbl{padding:12px 20px 0}
+  .q-actions{flex-wrap:wrap;gap:10px}
+  .q-spacer{display:none}
+  .q-actions .btn-p{order:1;width:100%}
+  .q-actions .btn-ghost{order:2;margin:2px auto 0}
 }
 </style>
 </head>
@@ -294,7 +299,7 @@ img{display:block;max-width:100%;height:auto}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
           Back
         </button>
-        <span style="flex:1"></span>
+        <span class="q-spacer"></span>
         <button type="button" class="btn-p" id="nextBtn">Continue
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
