@@ -214,19 +214,19 @@ h2.title{font-family:var(--ff);font-size:clamp(2rem,4vw,3.1rem);font-weight:700;
 .btn-wl:hover{background:rgba(255,255,255,.22)}
 
 /* ═══ FOOTER ═══ */
-footer{background:var(--ink);color:#cdd8e2;padding:64px 0 30px}
-.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
-.foot-brand-name{font-family:var(--ff);font-size:1.4rem;font-weight:800;color:#fff}
-.foot-brand-tag{font-size:.6rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted2);margin-top:3px}
-.foot-desc{font-size:.9rem;font-weight:300;margin-top:16px;max-width:320px;color:#a9b7c4}
-.foot-slogan{font-family:var(--ff);font-style:italic;color:var(--green-l);margin-top:14px;font-weight:400}
-.fcol-ttl{font-family:var(--ff);font-size:.72rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-bottom:16px}
-.foot-list{display:flex;flex-direction:column;gap:10px;font-size:.88rem;font-weight:300}
-.foot-list a:hover{color:#fff}
-.foot-phone{font-family:var(--ff);font-weight:600;color:#fff!important;font-size:1.05rem}
+footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-top:1px solid var(--border)}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid var(--border)}
+.foot-brand-logo{height:52px;width:auto;max-width:none;display:block;border:0;margin-bottom:14px}
+.foot-desc{font-size:.9rem;font-weight:300;margin-top:0;max-width:320px;color:var(--muted)}
+.foot-slogan{font-family:var(--ff);font-style:italic;color:var(--green-d);margin-top:14px;font-weight:500}
+.fcol-ttl{font-family:var(--ff);font-size:.72rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink);margin-bottom:16px}
+.foot-list{display:flex;flex-direction:column;gap:10px;font-size:.88rem;font-weight:300;color:var(--muted)}
+.foot-list a{color:var(--muted)}
+.foot-list a:hover{color:var(--ink)}
+.foot-phone{font-family:var(--ff);font-weight:600;color:var(--ink)!important;font-size:1.05rem}
 .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-top:24px;font-size:.78rem;color:var(--muted2)}
 .foot-policies{display:flex;gap:22px}
-.foot-policies a:hover{color:#fff}
+.foot-policies a:hover{color:var(--ink)}
 
 /* ═══ MOBILE STICKY CTA ═══ */
 .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:150;display:none;gap:10px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-top:1px solid var(--border)}
@@ -542,8 +542,7 @@ footer{background:var(--ink);color:#cdd8e2;padding:64px 0 30px}
   <div class="wrap">
     <div class="foot-top">
       <div>
-        <div class="foot-brand-name"><span class="grad-text">Brasil</span>Cleaning</div>
-        <div class="foot-brand-tag">Caring for Your Well-Being</div>
+        <img src="./assets/logo.png" alt="BrasilCleaning — Caring for Your Well-Being" class="foot-brand-logo"/>
         <p class="foot-desc">Professional commercial and residential cleaning across Broward County — buildings, homes, offices and post-construction.</p>
         <p class="foot-slogan">A cleaner space, a healthier you.</p>
       </div>
@@ -553,8 +552,8 @@ footer{background:var(--ink);color:#cdd8e2;padding:64px 0 30px}
           <a class="foot-phone" href="tel:19542742055">(954) 274-2055</a>
           <a href="sms:19542742055">Text us for a free estimate</a>
           <!-- [PLACEHOLDER: e-mail — cliente ainda não forneceu; substituir depois] -->
-          <span style="color:#8b98a5">Email — coming soon</span>
-          <span style="color:#a9b7c4">Rosangela Souza</span>
+          <span style="color:var(--muted2)">Email — coming soon</span>
+          <span style="color:var(--muted)">Rosangela Souza</span>
         </div>
       </div>
       <div>
