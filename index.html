@@ -226,11 +226,6 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
 .foot-policies{display:flex;gap:22px}
 .foot-policies a:hover{color:var(--ink)}
 
-/* ═══ MOBILE STICKY CTA ═══ */
-.sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:150;display:none;gap:10px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-top:1px solid var(--border)}
-.sticky-cta a{flex:1;text-align:center;padding:13px;border-radius:100px;font-family:var(--ff);font-size:.86rem;font-weight:600}
-.sticky-est{background:var(--grad);color:#fff}
-
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:960px){
   .hero-inner,.wb-inner,.areas-inner{grid-template-columns:1fr;gap:44px}
@@ -253,8 +248,6 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
   .trust-item:nth-child(n+5){display:none}
   .hero-badge{display:none}
   .hero-card-body{padding-right:0}
-  .sticky-cta{display:flex}
-  body{padding-bottom:86px}
 }
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important}
@@ -566,11 +559,6 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
     </div>
   </div>
 </footer>
-
-<!-- MOBILE STICKY CTA -->
-<div class="sticky-cta" aria-label="Quick contact">
-  <a class="sticky-est" href="sms:19542742055">Get a Free Estimate</a>
-</div>
 
 <script>
 // nav scroll behavior
