@@ -70,9 +70,9 @@ h2.title{font-family:var(--ff);font-size:clamp(2rem,4vw,3.1rem);font-weight:700;
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:74px;background:rgba(255,255,255,.9);backdrop-filter:blur(18px);border-bottom:1px solid transparent;transition:height .3s,border-color .3s,box-shadow .3s,transform .42s var(--ease)}
 .nav.sc{height:62px;border-color:var(--border);box-shadow:0 6px 30px -18px rgba(14,47,102,.35)}
 .nav.hide{transform:translateY(-100%)}
-.brand{display:flex;flex-direction:column;line-height:1}
-.brand-name{font-family:var(--ff);font-size:1.35rem;font-weight:800;letter-spacing:-.5px}
-.brand-tag{font-size:.5rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted2);font-weight:500;margin-top:3px}
+.brand{display:flex;align-items:center;line-height:1;flex-shrink:0}
+.brand-logo{height:46px;width:auto;max-width:none;display:block;border:0;transition:height .3s var(--ease)}
+.nav.sc .brand-logo{height:38px}
 .nav-links{display:flex;gap:34px;list-style:none}
 .nav-links a{font-family:var(--ff);font-size:.82rem;font-weight:500;color:var(--muted);transition:color .2s;position:relative}
 .nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
@@ -248,6 +248,7 @@ footer{background:var(--ink);color:#cdd8e2;padding:64px 0 30px}
   .wrap{padding:0 22px}
   .nav{padding:0 22px}
   .nav-links,.nav>.nav-cta{display:none}
+  .brand-logo{height:40px}
   .burger{display:flex}
   .section{padding:72px 0}
   .svc-grid{grid-template-columns:1fr}
@@ -262,9 +263,8 @@ footer{background:var(--ink);color:#cdd8e2;padding:64px 0 30px}
 
 <!-- NAV -->
 <nav class="nav" id="nav">
-  <a href="#home" class="brand" aria-label="BrasilCleaning home">
-    <span class="brand-name"><span class="grad-text">Brasil</span><span style="color:var(--blue-d)">Cleaning</span></span>
-    <span class="brand-tag">Caring for Your Well-Being</span>
+  <a href="#home" class="brand" aria-label="BrasilCleaning — Caring for Your Well-Being">
+    <img src="./assets/logo.png" alt="BrasilCleaning — Caring for Your Well-Being" class="brand-logo"/>
   </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
