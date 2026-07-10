@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Get a Free Estimate | BrasilCleaning</title>
+<meta name="description" content="Request your free cleaning estimate from BrasilCleaning — buildings, homes, offices and post-construction across Broward County."/>
+<meta name="theme-color" content="#1f6b32"/>
+
+<!-- Favicons -->
+<link rel="icon" href="./assets/favicon.ico" sizes="any"/>
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png"/>
+<link rel="manifest" href="./assets/site.webmanifest"/>
+
+<!-- Analytics / dataLayer hook -->
+<script>
+window.dataLayer = window.dataLayer || [];
+window.bcPushEvent = window.bcPushEvent || function(eventName, payload){
+  window.dataLayer.push(Object.assign({ event: eventName, site_name: "BrasilCleaning" }, payload || {}));
+};
+</script>
+
+<!-- EmailJS (client-side email). [CONFIGURAR]: keys are placeholders — replace in the CONFIG block below. -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+<style>
+:root{
+  --green:#4a9d2f; --green-l:#7cbf4a; --green-d:#1f6b32;
+  --blue:#1f6fb2; --blue-l:#3f9ad0; --blue-d:#0e2f66;
+  --grad:linear-gradient(115deg,var(--green) 0%,var(--green-d) 34%,var(--blue) 78%,var(--blue-d) 100%);
+  --grad-soft:linear-gradient(115deg,rgba(74,157,47,.12),rgba(31,111,178,.12));
+  --ink:#0e2233; --muted:#5a6b7b; --muted2:#93a6b6;
+  --white:#fff; --bg-soft:#f4f9f5; --bg-blue:#eef5fb; --bg-mist:#f7fbf9;
+  --border:#e3ede7; --err:#d33a4b;
+  --ff:"Sora",system-ui,sans-serif; --fb:"Inter",system-ui,sans-serif;
+  --ease:cubic-bezier(.4,0,.2,1); --shadow:0 18px 50px -20px rgba(14,47,102,.28);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);color:var(--ink);line-height:1.6;background:
+  radial-gradient(55% 45% at 85% 0%,rgba(31,111,178,.12),transparent 60%),
+  radial-gradient(45% 45% at 5% 100%,rgba(74,157,47,.12),transparent 60%),
+  linear-gradient(180deg,#fbfefb,#eef5fb);min-height:100vh;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--fb);cursor:pointer}
+img{display:block;max-width:100%;height:auto}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* top bar */
+.qnav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 40px;max-width:1180px;margin:0 auto}
+.qnav-logo{height:44px;width:auto;border:0}
+.qnav-right{display:flex;align-items:center;gap:22px}
+.qnav-back{font-family:var(--ff);font-size:.82rem;font-weight:500;color:var(--muted);display:inline-flex;align-items:center;gap:7px;transition:color .2s}
+.qnav-back:hover{color:var(--ink)}
+.qnav-phone{font-family:var(--ff);font-size:.9rem;font-weight:700;color:var(--blue-d)}
+
+/* layout */
+.q-wrap{max-width:1100px;margin:0 auto;padding:20px 40px 80px;display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+.q-aside{position:sticky;top:24px}
+.q-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--ff);font-size:.68rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--green-d)}
+.q-eyebrow::before{content:"";width:22px;height:2px;border-radius:2px;background:var(--grad)}
+.q-aside h1{font-family:var(--ff);font-size:clamp(2rem,3.5vw,2.9rem);font-weight:800;line-height:1.05;letter-spacing:-1.5px;margin:16px 0 14px}
+.q-aside p{color:var(--muted);font-weight:300;max-width:380px}
+.q-points{list-style:none;margin:26px 0 30px;display:flex;flex-direction:column;gap:14px}
+.q-point{display:flex;align-items:center;gap:12px;font-size:.92rem}
+.q-point-ico{width:34px;height:34px;border-radius:9px;background:var(--grad-soft);display:grid;place-items:center;color:var(--green-d);flex-shrink:0}
+.q-aside-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px 22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:3px;max-width:320px}
+.q-aside-card span{font-family:var(--ff);font-size:.6rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted2)}
+.q-aside-card a{font-family:var(--ff);font-size:1.35rem;font-weight:700;color:var(--ink)}
+.q-aside-card small{color:var(--muted);font-size:.8rem}
+
+/* form card */
+.q-panel{background:#fff;border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+.q-progress{display:flex;gap:8px;padding:22px 30px 0}
+.q-pbar{flex:1;height:5px;border-radius:5px;background:var(--border);overflow:hidden}
+.q-pbar i{display:block;height:100%;width:0;background:var(--grad);transition:width .4s var(--ease)}
+.q-progress-lbl{padding:12px 30px 0;font-family:var(--ff);font-size:.66rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2)}
+.q-form{padding:6px 30px 30px}
+.q-step{display:none;animation:qfade .35s var(--ease)}
+.q-step.active{display:block}
+@keyframes qfade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.q-step-title{font-family:var(--ff);font-size:1.25rem;font-weight:700;margin:22px 0 4px}
+.q-step-sub{color:var(--muted);font-size:.88rem;font-weight:300;margin-bottom:22px}
+.q-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{margin-bottom:16px}
+.field label{display:block;font-family:var(--ff);font-size:.74rem;font-weight:600;letter-spacing:.3px;margin-bottom:7px;color:var(--ink)}
+.field .req{color:var(--err)}
+.field .opt{color:var(--muted2);font-weight:400;text-transform:none;letter-spacing:0}
+.field input,.field select,.field textarea{width:100%;font-family:var(--fb);font-size:.94rem;color:var(--ink);background:var(--bg-mist);border:1.5px solid var(--border);border-radius:11px;padding:12px 14px;transition:border-color .2s,background .2s,box-shadow .2s;outline:none}
+.field textarea{resize:vertical;min-height:92px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue-l);background:#fff;box-shadow:0 0 0 4px rgba(31,111,178,.1)}
+.field input::placeholder{color:var(--muted2)}
+.field.bad input,.field.bad select,.field.bad textarea{border-color:var(--err);background:#fff6f7}
+.field .err-msg{display:none;color:var(--err);font-size:.74rem;margin-top:6px;font-weight:500}
+.field.bad .err-msg{display:block}
+/* segmented (radio-like) */
+.seg{display:flex;gap:10px;flex-wrap:wrap}
+.seg label{flex:1;min-width:90px;margin:0}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:flex;align-items:center;justify-content:center;gap:7px;padding:11px 10px;border:1.5px solid var(--border);border-radius:11px;background:var(--bg-mist);font-family:var(--ff);font-size:.82rem;font-weight:500;transition:.18s;text-align:center}
+.seg input:checked + span{border-color:var(--green);background:var(--bg-soft);color:var(--green-d)}
+.seg input:focus-visible + span{box-shadow:0 0 0 4px rgba(31,111,178,.12)}
+
+/* actions */
+.q-actions{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:26px}
+.btn-p{display:inline-flex;align-items:center;gap:9px;background:var(--grad);color:#fff;padding:14px 28px;border:none;border-radius:100px;font-family:var(--ff);font-size:.86rem;font-weight:600;transition:transform .2s,box-shadow .2s;box-shadow:0 14px 30px -12px rgba(31,111,178,.6)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 18px 36px -12px rgba(31,111,178,.72)}
+.btn-p[disabled]{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-p svg{transition:transform .2s}.btn-p:hover svg{transform:translateX(3px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:none;border:none;color:var(--muted);font-family:var(--ff);font-size:.84rem;font-weight:600;padding:10px 6px;transition:color .2s}
+.btn-ghost:hover{color:var(--ink)}
+.btn-ghost[hidden]{display:none}
+
+/* success */
+.q-success{display:none;padding:52px 34px;text-align:center;animation:qfade .4s var(--ease)}
+.q-success.show{display:block}
+.q-success-ico{width:74px;height:74px;border-radius:50%;background:var(--grad);display:grid;place-items:center;color:#fff;margin:0 auto 22px;box-shadow:0 16px 34px -14px rgba(31,111,178,.6)}
+.q-success h2{font-family:var(--ff);font-size:1.7rem;font-weight:800;letter-spacing:-.5px;margin-bottom:10px}
+.q-success p{color:var(--muted);font-weight:300;max-width:400px;margin:0 auto 26px}
+.q-success .btn-p{margin:0 auto}
+
+/* footer */
+.qfoot{text-align:center;padding:26px 20px 30px;color:var(--muted2);font-size:.78rem}
+.qfoot a{color:var(--muted)}
+.qfoot a:hover{color:var(--ink)}
+
+@media(max-width:880px){
+  .q-wrap{grid-template-columns:1fr;gap:26px;padding:12px 22px 60px}
+  .q-aside{position:static}
+  .q-aside p{max-width:none}
+  .qnav{padding:16px 22px}
+  .qnav-back span{display:none}
+}
+@media(max-width:520px){
+  .q-row{grid-template-columns:1fr}
+  .q-form{padding:6px 20px 24px}
+  .q-progress{padding:20px 20px 0}
+  .q-progress-lbl{padding:12px 20px 0}
+  .qnav-phone{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="qnav">
+  <a href="./index.html" aria-label="BrasilCleaning home">
+    <img src="./assets/logo.png" alt="BrasilCleaning" class="qnav-logo"/>
+  </a>
+  <div class="qnav-right">
+    <a class="qnav-phone" href="tel:19542742055">(954) 274-2055</a>
+    <a class="qnav-back" href="./index.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      <span>Back to site</span>
+    </a>
+  </div>
+</header>
+
+<main class="q-wrap">
+  <!-- ASIDE -->
+  <aside class="q-aside">
+    <div class="q-eyebrow">Free Estimate</div>
+    <h1>Tell us about<br/><span class="grad-text">your space.</span></h1>
+    <p>Answer a few quick questions and we'll get back to you with a personalized cleaning quote — no cost, no pressure.</p>
+    <ul class="q-points">
+      <li class="q-point"><span class="q-point-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>Fast, friendly reply</li>
+      <li class="q-point"><span class="q-point-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>Insured & vetted teams</li>
+      <li class="q-point"><span class="q-point-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M8 12l2.5 2.5L16 9"/></svg></span>100% satisfaction guarantee</li>
+    </ul>
+    <div class="q-aside-card">
+      <span>Prefer to talk?</span>
+      <a href="tel:19542742055">(954) 274-2055</a>
+      <small>Call or text — Rosangela Souza</small>
+    </div>
+  </aside>
+
+  <!-- FORM PANEL -->
+  <section class="q-panel">
+    <div class="q-progress" aria-hidden="true">
+      <div class="q-pbar"><i id="pbar"></i></div>
+    </div>
+    <div class="q-progress-lbl"><span id="stepLabel">Step 1 of 3</span> · <span id="stepName">Your details</span></div>
+
+    <form id="quoteForm" class="q-form" novalidate>
+      <!-- STEP 1 -->
+      <div class="q-step active" data-step="1">
+        <div class="q-step-title">Your details</div>
+        <div class="q-step-sub">So we know who to send the estimate to.</div>
+        <div class="q-row">
+          <div class="field"><label for="firstName">First Name <span class="req">*</span></label>
+            <input id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Jane"/>
+            <div class="err-msg">Please enter your first name.</div></div>
+          <div class="field"><label for="lastName">Last Name <span class="req">*</span></label>
+            <input id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Smith"/>
+            <div class="err-msg">Please enter your last name.</div></div>
+        </div>
+        <div class="q-row">
+          <div class="field"><label for="phone">Phone / Text <span class="req">*</span></label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="14" placeholder="(954) 000-0000"/>
+            <div class="err-msg">Please enter a valid phone number.</div></div>
+          <div class="field"><label for="email">Email <span class="req">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@email.com"/>
+            <div class="err-msg">Please enter a valid email.</div></div>
+        </div>
+        <div class="q-row">
+          <div class="field"><label for="zip">ZIP Code <span class="req">*</span></label>
+            <input id="zip" name="zip" type="text" inputmode="numeric" maxlength="5" autocomplete="postal-code" placeholder="33301"/>
+            <div class="err-msg">Please enter a 5-digit ZIP code.</div></div>
+          <div class="field"><label for="contactPref">Preferred Contact <span class="req">*</span></label>
+            <select id="contactPref" name="contactPref">
+              <option value="" disabled selected>Select…</option>
+              <option>Text message</option><option>Phone call</option><option>Email</option>
+            </select>
+            <div class="err-msg">Please choose a contact method.</div></div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="q-step" data-step="2">
+        <div class="q-step-title">Your space</div>
+        <div class="q-step-sub">Help us understand what needs cleaning.</div>
+        <div class="field"><label for="service">Service Type <span class="req">*</span></label>
+          <select id="service" name="service">
+            <option value="" disabled selected>Select a service…</option>
+            <option>Building / Condo</option>
+            <option>House (Residential)</option>
+            <option>Office</option>
+            <option>Post-Construction</option>
+            <option>Deep Cleaning</option>
+          </select>
+          <div class="err-msg">Please select a service type.</div></div>
+        <div class="q-row">
+          <div class="field"><label for="bedrooms">Bedrooms / Rooms <span class="req">*</span></label>
+            <select id="bedrooms" name="bedrooms">
+              <option value="" disabled selected>Select…</option>
+              <option>Studio</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option><option>Not applicable</option>
+            </select>
+            <div class="err-msg">Please select an option.</div></div>
+          <div class="field"><label for="bathrooms">Bathrooms <span class="req">*</span></label>
+            <select id="bathrooms" name="bathrooms">
+              <option value="" disabled selected>Select…</option>
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option>
+            </select>
+            <div class="err-msg">Please select an option.</div></div>
+        </div>
+        <div class="q-row">
+          <div class="field"><label for="floors">Number of Floors <span class="req">*</span></label>
+            <select id="floors" name="floors">
+              <option value="" disabled selected>Select…</option>
+              <option>1</option><option>2</option><option>3</option><option>4+</option>
+            </select>
+            <div class="err-msg">Please select an option.</div></div>
+          <div class="field"><label>Any pets? <span class="req">*</span></label>
+            <div class="seg" id="petsSeg">
+              <label><input type="radio" name="pets" value="Yes"/><span>Yes</span></label>
+              <label><input type="radio" name="pets" value="No"/><span>No</span></label>
+            </div>
+            <div class="err-msg">Please let us know.</div></div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="q-step" data-step="3">
+        <div class="q-step-title">Schedule & notes</div>
+        <div class="q-step-sub">Last step — then we'll send your estimate.</div>
+        <div class="q-row">
+          <div class="field"><label for="frequency">Cleaning Frequency <span class="req">*</span></label>
+            <select id="frequency" name="frequency">
+              <option value="" disabled selected>Select…</option>
+              <option>One-time</option><option>Weekly</option><option>Bi-weekly</option><option>Monthly</option>
+            </select>
+            <div class="err-msg">Please select a frequency.</div></div>
+          <div class="field"><label for="startDate">Preferred Start Date <span class="req">*</span></label>
+            <input id="startDate" name="startDate" type="date"/>
+            <div class="err-msg">Please choose a date.</div></div>
+        </div>
+        <div class="field"><label for="hearAbout">How did you hear about us? <span class="req">*</span></label>
+          <select id="hearAbout" name="hearAbout">
+            <option value="" disabled selected>Select…</option>
+            <option>Google</option><option>Instagram / Facebook</option><option>Referral</option><option>Flyer / Card</option><option>Other</option>
+          </select>
+          <div class="err-msg">Please select an option.</div></div>
+        <div class="field"><label for="notes">Additional Notes <span class="opt">(optional)</span></label>
+          <textarea id="notes" name="notes" placeholder="Anything else we should know about your space or schedule?"></textarea></div>
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="q-actions">
+        <button type="button" class="btn-ghost" id="backBtn" hidden>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back
+        </button>
+        <span style="flex:1"></span>
+        <button type="button" class="btn-p" id="nextBtn">Continue
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <button type="submit" class="btn-p" id="submitBtn" hidden>Get My Free Estimate
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        </button>
+      </div>
+    </form>
+
+    <!-- SUCCESS -->
+    <div class="q-success" id="success">
+      <div class="q-success-ico"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <h2>Request received!</h2>
+      <p>Thank you — we've got your details and will reach out shortly with your free estimate. Prefer to talk now? Text or call us.</p>
+      <a class="btn-p" href="./index.html">Back to Home
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="qfoot">© 2026 BrasilCleaning · <a href="./index.html">brasilcleaning.com</a> · (954) 274-2055</footer>
+
+<script>
+/* ===== EmailJS config — [CONFIGURAR]: replace with the client's real keys ===== */
+const EMAILJS_CONFIG = {
+  publicKey:  "YOUR_PUBLIC_KEY",   // [CONFIGURAR]
+  serviceId:  "YOUR_SERVICE_ID",   // [CONFIGURAR]
+  templateId: "YOUR_TEMPLATE_ID"   // [CONFIGURAR]
+};
+// EmailJS only actually sends when real keys are set; otherwise the form still
+// completes for preview (no email is sent).
+const EMAILJS_READY = !/^YOUR_/.test(EMAILJS_CONFIG.publicKey) && window.emailjs;
+try { if (EMAILJS_READY) emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey }); } catch(e){}
+
+/* fire on load: user opened the estimate form */
+window.bcPushEvent && window.bcPushEvent("click_to_estimate", { page_path: location.pathname });
+
+/* ===== multi-step logic ===== */
+const form = document.getElementById("quoteForm");
+const steps = [...form.querySelectorAll(".q-step")];
+const pbar = document.getElementById("pbar");
+const stepLabel = document.getElementById("stepLabel");
+const stepName = document.getElementById("stepName");
+const backBtn = document.getElementById("backBtn");
+const nextBtn = document.getElementById("nextBtn");
+const submitBtn = document.getElementById("submitBtn");
+const names = ["Your details","Your space","Schedule & notes"];
+let current = 0;
+
+/* min date = today */
+const dEl = document.getElementById("startDate");
+dEl.min = new Date().toISOString().split("T")[0];
+
+function render(){
+  steps.forEach((s,i)=>s.classList.toggle("active", i===current));
+  pbar.style.width = ((current+1)/steps.length*100) + "%";
+  stepLabel.textContent = `Step ${current+1} of ${steps.length}`;
+  stepName.textContent = names[current];
+  backBtn.hidden = current===0;
+  nextBtn.hidden = current===steps.length-1;
+  submitBtn.hidden = current!==steps.length-1;
+  form.querySelector(".q-step.active input,.q-step.active select")?.focus({preventScroll:true});
+}
+
+function markBad(field, bad){ field.classList.toggle("bad", bad); }
+
+function validateStep(i){
+  let ok = true, firstBad = null;
+  const stepEl = steps[i];
+  stepEl.querySelectorAll("input,select,textarea").forEach(el=>{
+    const field = el.closest(".field"); if(!field) return;
+    if(el.type==="radio"){ // handled below
+      return;
+    }
+    const required = field.querySelector(".req");
+    if(!required) return;
+    let bad = false;
+    const v = (el.value||"").trim();
+    if(!v) bad = true;
+    else if(el.id==="email") bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    else if(el.id==="zip") bad = !/^\d{5}$/.test(v);
+    else if(el.id==="phone") bad = v.replace(/\D/g,"").length < 10;
+    markBad(field, bad);
+    if(bad){ ok=false; firstBad = firstBad||field; }
+  });
+  // radio group (pets) on step 2
+  if(i===1){
+    const pf = document.getElementById("petsSeg").closest(".field");
+    const chosen = form.querySelector('input[name="pets"]:checked');
+    markBad(pf, !chosen);
+    if(!chosen){ ok=false; firstBad = firstBad||pf; }
+  }
+  if(firstBad) firstBad.scrollIntoView({behavior:"smooth",block:"center"});
+  return ok;
+}
+
+/* clear error as the user fixes a field */
+form.addEventListener("input", e=>{ const f=e.target.closest(".field"); if(f) f.classList.remove("bad"); });
+form.addEventListener("change", e=>{ if(e.target.name==="pets") document.getElementById("petsSeg").closest(".field").classList.remove("bad"); });
+
+/* phone formatting */
+document.getElementById("phone").addEventListener("input", e=>{
+  let d = e.target.value.replace(/\D/g,"").slice(0,10);
+  let out = d;
+  if(d.length>6) out = `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`;
+  else if(d.length>3) out = `(${d.slice(0,3)}) ${d.slice(3)}`;
+  else if(d.length>0) out = `(${d}`;
+  e.target.value = out;
+});
+document.getElementById("zip").addEventListener("input", e=>{ e.target.value = e.target.value.replace(/\D/g,"").slice(0,5); });
+
+nextBtn.addEventListener("click", ()=>{ if(validateStep(current)){ current++; render(); window.scrollTo({top:0,behavior:"smooth"}); }});
+backBtn.addEventListener("click", ()=>{ current--; render(); });
+
+form.addEventListener("submit", e=>{
+  e.preventDefault();
+  if(!validateStep(current)) return;
+  submitBtn.disabled = true; submitBtn.firstChild.textContent = "Sending… ";
+
+  const data = Object.fromEntries(new FormData(form).entries());
+  const finish = ()=>{
+    window.bcPushEvent && window.bcPushEvent("form_submit", { service: data.service||"", page_path: location.pathname });
+    form.style.display = "none";
+    document.querySelector(".q-progress").style.display="none";
+    document.querySelector(".q-progress-lbl").style.display="none";
+    document.getElementById("success").classList.add("show");
+    window.scrollTo({top:0,behavior:"smooth"});
+  };
+
+  if(EMAILJS_READY){
+    emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, data)
+      .then(finish)
+      .catch(()=>{ submitBtn.disabled=false; submitBtn.firstChild.textContent="Get My Free Estimate "; alert("Something went wrong sending your request. Please call or text us at (954) 274-2055."); });
+  } else {
+    // preview mode (placeholder keys): complete without sending
+    setTimeout(finish, 500);
+  }
+});
+
+render();
+</script>
+</body>
+</html>

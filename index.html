@@ -270,7 +270,7 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
     <li><a href="#areas">Areas</a></li>
     <li><a href="#reviews">Reviews</a></li>
   </ul>
-  <a class="nav-cta" href="sms:19542742055">Free Estimate
+  <a class="nav-cta" href="./quote.html">Free Estimate
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
   </a>
   <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -283,7 +283,7 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
   <a href="#how">How It Works</a>
   <a href="#areas">Areas</a>
   <a href="#reviews">Reviews</a>
-  <a class="nav-cta" href="sms:19542742055">Free Estimate</a>
+  <a class="nav-cta" href="./quote.html">Free Estimate</a>
 </div>
 
 <!-- HERO -->
@@ -296,7 +296,7 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
       <h1>A cleaner space,<br/><em class="grad-text">a healthier you.</em></h1>
       <p class="hero-lead">Professional cleaning for buildings, homes, offices and post-construction across Broward County — done with care, consistency and attention to your well-being.</p>
       <div class="hero-btns">
-        <a class="btn-p" href="sms:19542742055">Get a Free Estimate
+        <a class="btn-p" href="./quote.html">Get a Free Estimate
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
@@ -515,7 +515,7 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
     <h2 class="reveal">Ready for a cleaner,<br/>healthier space?</h2>
     <p class="reveal d1">Request your free estimate and we'll help you find the right cleaning plan for your space.</p>
     <div class="cta-btns reveal d2">
-      <a class="btn-w" href="sms:19542742055">Get a Free Estimate
+      <a class="btn-w" href="./quote.html">Get a Free Estimate
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
@@ -593,10 +593,10 @@ const animate=(el)=>{
 const co=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){animate(e.target);co.unobserve(e.target);}});},{threshold:.5});
 counters.forEach(el=>co.observe(el));
 
-// tracking: click to text
+// tracking: click to estimate (buttons that open the quote form)
 document.addEventListener("click",(e)=>{
-  const sms=e.target.closest('a[href^="sms:"]');
-  if(sms){window.bcPushEvent&&window.bcPushEvent("click_to_text",{click_url:sms.getAttribute("href"),page_path:location.pathname});}
+  const q=e.target.closest('a[href$="quote.html"]');
+  if(q){window.bcPushEvent&&window.bcPushEvent("click_to_estimate",{click_text:(q.textContent||"").trim(),page_path:location.pathname});}
 });
 </script>
 </body>
