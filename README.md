@@ -14,8 +14,11 @@ Static site — deploy on **Vercel** by importing this repository. No build step
 - Rosangela Souza — (954) 274-2055
 
 ---
-### Pending (`[CONFIRMAR]` markers in code)
-- Real email address
-- Logo PNG (currently a CSS wordmark placeholder)
+### Pending (`[PLACEHOLDER]` / `[CONFIRMAR]` markers in code)
+- Real email address (footer shows "Email — coming soon")
 - Real client reviews
+- Functional CTA destinations (buttons will be finalized later; currently point to SMS)
 - `privacy.html` / `cookies.html` policy pages
+
+### Done
+- Real transparent logo (nav + light footer), no border/background
