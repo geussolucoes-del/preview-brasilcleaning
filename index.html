@@ -115,7 +115,7 @@ h2.title{font-family:var(--ff);font-size:clamp(2rem,4vw,3.1rem);font-weight:700;
 
 /* hero visual card stack */
 .hero-visual{position:relative;opacity:0;animation:fade 1s .5s forwards}
-.hero-card{position:relative;border-radius:26px;overflow:hidden;background:var(--grad);aspect-ratio:4/5;box-shadow:0 40px 80px -30px rgba(14,47,102,.5);display:flex;flex-direction:column;justify-content:space-between;padding:32px}
+.hero-card{position:relative;border-radius:26px;overflow:hidden;background:var(--grad);box-shadow:0 40px 80px -30px rgba(14,47,102,.5);display:flex;flex-direction:column;gap:clamp(68px,9vw,110px);padding:34px}
 .hero-card::before{content:"";position:absolute;inset:0;background:radial-gradient(80% 60% at 70% 20%,rgba(255,255,255,.22),transparent)}
 .hero-card-body{position:relative;z-index:2;color:#fff;padding-right:118px}
 .hero-card-body h3{font-family:var(--ff);font-size:1.5rem;font-weight:700;line-height:1.15}
