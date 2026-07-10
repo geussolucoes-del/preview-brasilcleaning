@@ -202,9 +202,9 @@ h2.title{font-family:var(--ff);font-size:clamp(2rem,4vw,3.1rem);font-weight:700;
 .rev-role{font-size:.76rem;color:var(--muted2)}
 
 /* ═══ CTA ═══ */
-.cta{position:relative;background:var(--grad);overflow:hidden}
+.cta{position:relative;background:var(--grad);overflow:hidden;padding:clamp(66px,9vw,100px) 0}
 .cta::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) 1.5px,transparent 1.5px);background-size:30px 30px;mask-image:radial-gradient(ellipse 70% 90% at 50% 50%,#000,transparent)}
-.cta-inner{position:relative;z-index:2;text-align:center;color:#fff;padding:96px 0}
+.cta-inner{position:relative;z-index:2;text-align:center;color:#fff}
 .cta h2{font-family:var(--ff);font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-1px}
 .cta p{opacity:.9;font-weight:300;max-width:520px;margin:16px auto 0}
 .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:32px}
