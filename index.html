@@ -17,7 +17,9 @@
 <!-- Analytics / dataLayer hook (GTM-ready) -->
 <script>
 window.dataLayer = window.dataLayer || [];
+window.bcCookieConsent = localStorage.getItem("bcCookieConsent") || "";
 window.bcPushEvent = window.bcPushEvent || function(eventName, payload){
+  if(eventName !== "cookie_consent_update" && window.bcCookieConsent !== "analytics") return;
   window.dataLayer.push(Object.assign({
     event: eventName,
     site_name: "BrasilCleaning"
@@ -225,6 +227,14 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
 .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-top:24px;font-size:.78rem;color:var(--muted2)}
 .foot-policies{display:flex;gap:22px}
 .foot-policies a:hover{color:var(--ink)}
+.cookie{position:fixed;left:24px;right:24px;bottom:22px;z-index:260;display:none;align-items:center;justify-content:space-between;gap:18px;max-width:960px;margin:0 auto;background:#fff;border:1px solid var(--border);border-radius:18px;padding:18px 20px;box-shadow:0 24px 70px -30px rgba(14,47,102,.45)}
+.cookie.show{display:flex}
+.cookie p{color:var(--muted);font-size:.86rem;font-weight:300;max-width:620px}
+.cookie b{font-family:var(--ff);display:block;color:var(--ink);font-size:.9rem;margin-bottom:3px}
+.cookie a{font-weight:600;color:var(--green-d)}
+.cookie-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.cookie-btn{border:1px solid var(--border);border-radius:999px;background:#fff;color:var(--ink);padding:10px 14px;font-family:var(--ff);font-size:.76rem;font-weight:700;white-space:nowrap}
+.cookie-btn.primary{border-color:transparent;background:var(--grad);color:#fff}
 
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:960px){
@@ -248,6 +258,9 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
   .trust-item:nth-child(n+5){display:none}
   .hero-badge{display:none}
   .hero-card-body{padding-right:0}
+  .cookie{left:14px;right:14px;bottom:14px;align-items:stretch;flex-direction:column}
+  .cookie-actions{justify-content:stretch}
+  .cookie-btn{flex:1}
 }
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important}
@@ -273,7 +286,7 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
   <a class="nav-cta" href="./quote.html">Free Estimate
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
   </a>
-  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- MOBILE MENU -->
@@ -460,7 +473,6 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
       <h2 class="title reveal d1" style="margin-top:14px">Serving <span class="grad-text">Broward County</span></h2>
       <p class="section-sub reveal d2">Proudly cleaning homes and businesses across South Florida with the same care in every city we serve.</p>
     </div>
-    <!-- [CONFIRMAR: cidades reais atendidas — abaixo, exemplos de Broward County] -->
     <div class="areas-panel reveal d2">
       <div class="areas-kicker">Service Area</div>
       <h3>Broward County & surrounding cities</h3>
@@ -485,25 +497,24 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
 <section class="section" id="reviews" style="background:var(--bg-mist)">
   <div class="wrap">
     <div class="how-head">
-      <div class="eyebrow reveal">Client Reviews</div>
-      <h2 class="title reveal d1" style="margin-top:14px">What Our Clients <span class="grad-text">Say</span></h2>
+      <div class="eyebrow reveal">What to Expect</div>
+      <h2 class="title reveal d1" style="margin-top:14px">The BrasilCleaning <span class="grad-text">Standard</span></h2>
     </div>
-    <!-- [CONFIRMAR: depoimentos reais — abaixo, placeholders] -->
     <div class="rev-grid">
       <div class="rev-card reveal d1">
         <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">"Impeccable work and so easy to deal with. Our office has never looked better, and the team is always on time and respectful of our space."</p>
-        <div class="rev-who"><div class="rev-av">M</div><div><div class="rev-name">Marcus R.</div><div class="rev-role">Office Manager</div></div></div>
+        <p class="rev-text">Clear communication before every visit, so you know what is included, when the team arrives and how your space will be cared for.</p>
+        <div class="rev-who"><div class="rev-av">C</div><div><div class="rev-name">Clear Process</div><div class="rev-role">Before service</div></div></div>
       </div>
       <div class="rev-card reveal d2">
         <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">"They handled our post-construction cleanup perfectly — every bit of dust gone. Truly move-in ready. Highly recommend BrasilCleaning."</p>
-        <div class="rev-who"><div class="rev-av">A</div><div><div class="rev-name">Ana P.</div><div class="rev-role">Homeowner</div></div></div>
+        <p class="rev-text">Detail-focused cleaning for high-touch surfaces, corners, kitchens, bathrooms, shared areas and post-construction dust.</p>
+        <div class="rev-who"><div class="rev-av">D</div><div><div class="rev-name">Detailed Care</div><div class="rev-role">During service</div></div></div>
       </div>
       <div class="rev-card reveal d3">
         <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">"Reliable, thorough and trustworthy. I have them clean my building every week and it's always spotless. Wouldn't go anywhere else."</p>
-        <div class="rev-who"><div class="rev-av">J</div><div><div class="rev-name">Julia S.</div><div class="rev-role">Property Manager</div></div></div>
+        <p class="rev-text">If something needs extra attention, BrasilCleaning follows up and makes it right with a satisfaction-first approach.</p>
+        <div class="rev-who"><div class="rev-av">S</div><div><div class="rev-name">Satisfaction First</div><div class="rev-role">After service</div></div></div>
       </div>
     </div>
   </div>
@@ -535,8 +546,7 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
         <div class="fcol-ttl">Contact</div>
         <div class="foot-list">
           <a class="foot-phone" href="tel:19542742055">(954) 274-2055</a>
-          <!-- [PLACEHOLDER: e-mail — cliente ainda não forneceu; substituir depois] -->
-          <span style="color:var(--muted2)">Email — coming soon</span>
+          <span style="color:var(--muted2)">Call or text for email requests</span>
           <span style="color:var(--muted)">Rosangela Souza</span>
         </div>
       </div>
@@ -560,6 +570,15 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
   </div>
 </footer>
 
+<!-- COOKIE CONSENT -->
+<div class="cookie" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie preferences">
+  <p><b>Cookie preferences</b>We use necessary cookies to keep the site working and optional analytics to improve the estimate experience. <a href="./cookies.html">Cookie Policy</a></p>
+  <div class="cookie-actions">
+    <button class="cookie-btn" type="button" data-cookie-choice="necessary">Necessary only</button>
+    <button class="cookie-btn primary" type="button" data-cookie-choice="analytics">Accept analytics</button>
+  </div>
+</div>
+
 <script>
 // nav scroll behavior
 const nav=document.getElementById("nav");let last=0;
@@ -567,8 +586,10 @@ addEventListener("scroll",()=>{const y=scrollY;nav.classList.toggle("sc",y>50);n
 
 // mobile menu
 const burger=document.getElementById("burger"),mobile=document.getElementById("mobile");
-burger.addEventListener("click",()=>{burger.classList.toggle("on");mobile.classList.toggle("on");document.body.style.overflow=mobile.classList.contains("on")?"hidden":"";});
-mobile.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{burger.classList.remove("on");mobile.classList.remove("on");document.body.style.overflow="";}));
+function closeMenu(){burger.classList.remove("on");mobile.classList.remove("on");burger.setAttribute("aria-expanded","false");document.body.style.overflow="";}
+burger.addEventListener("click",()=>{const open=!mobile.classList.contains("on");burger.classList.toggle("on",open);mobile.classList.toggle("on",open);burger.setAttribute("aria-expanded",String(open));document.body.style.overflow=open?"hidden":"";});
+mobile.querySelectorAll("a").forEach(a=>a.addEventListener("click",closeMenu));
+addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu();});
 
 // scroll reveal
 const revealEls=[...document.querySelectorAll(".reveal")];
@@ -592,6 +613,16 @@ const animate=(el)=>{
 };
 const co=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){animate(e.target);co.unobserve(e.target);}});},{threshold:.5});
 counters.forEach(el=>co.observe(el));
+
+// cookie consent
+const cookieBanner=document.getElementById("cookieBanner");
+if(!window.bcCookieConsent){cookieBanner.classList.add("show");}
+document.querySelectorAll("[data-cookie-choice]").forEach(btn=>btn.addEventListener("click",()=>{
+  window.bcCookieConsent=btn.dataset.cookieChoice;
+  localStorage.setItem("bcCookieConsent",window.bcCookieConsent);
+  cookieBanner.classList.remove("show");
+  window.dataLayer.push({event:"cookie_consent_update",site_name:"BrasilCleaning",choice:window.bcCookieConsent});
+}));
 
 // tracking: click to estimate (buttons that open the quote form)
 document.addEventListener("click",(e)=>{

@@ -17,7 +17,9 @@
 <!-- Analytics / dataLayer hook -->
 <script>
 window.dataLayer = window.dataLayer || [];
+window.bcCookieConsent = localStorage.getItem("bcCookieConsent") || "";
 window.bcPushEvent = window.bcPushEvent || function(eventName, payload){
+  if(eventName !== "cookie_consent_update" && window.bcCookieConsent !== "analytics") return;
   window.dataLayer.push(Object.assign({ event: eventName, site_name: "BrasilCleaning" }, payload || {}));
 };
 </script>
@@ -99,6 +101,11 @@ img{display:block;max-width:100%;height:auto}
 .field.bad input,.field.bad select,.field.bad textarea{border-color:var(--err);background:#fff6f7}
 .field .err-msg{display:none;color:var(--err);font-size:.74rem;margin-top:6px;font-weight:500}
 .field.bad .err-msg{display:block}
+.check-field{margin-top:6px}
+.check-label{display:flex!important;align-items:flex-start;gap:11px;font-family:var(--fb)!important;font-size:.83rem!important;font-weight:300!important;line-height:1.55;color:var(--muted)!important;letter-spacing:0!important}
+.check-label input{width:18px!important;height:18px!important;margin-top:2px;accent-color:var(--green);flex-shrink:0}
+.check-label a{font-weight:600;color:var(--green-d)}
+.check-label a:hover{color:var(--ink)}
 /* segmented (radio-like) */
 .seg{display:flex;gap:10px;flex-wrap:wrap}
 .seg label{flex:1;min-width:90px;margin:0;position:relative}
@@ -130,6 +137,14 @@ img{display:block;max-width:100%;height:auto}
 .qfoot{text-align:center;padding:26px 20px 30px;color:var(--muted2);font-size:.78rem}
 .qfoot a{color:var(--muted)}
 .qfoot a:hover{color:var(--ink)}
+.cookie{position:fixed;left:24px;right:24px;bottom:22px;z-index:260;display:none;align-items:center;justify-content:space-between;gap:18px;max-width:960px;margin:0 auto;background:#fff;border:1px solid var(--border);border-radius:18px;padding:18px 20px;box-shadow:0 24px 70px -30px rgba(14,47,102,.45)}
+.cookie.show{display:flex}
+.cookie p{color:var(--muted);font-size:.86rem;font-weight:300;max-width:620px}
+.cookie b{font-family:var(--ff);display:block;color:var(--ink);font-size:.9rem;margin-bottom:3px}
+.cookie a{font-weight:600;color:var(--green-d)}
+.cookie-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.cookie-btn{border:1px solid var(--border);border-radius:999px;background:#fff;color:var(--ink);padding:10px 14px;font-family:var(--ff);font-size:.76rem;font-weight:700;white-space:nowrap}
+.cookie-btn.primary{border-color:transparent;background:var(--grad);color:#fff}
 
 @media(max-width:880px){
   .q-wrap{grid-template-columns:1fr;gap:26px;padding:12px 22px 60px}
@@ -147,6 +162,9 @@ img{display:block;max-width:100%;height:auto}
   .q-spacer{display:none}
   .q-actions .btn-p{order:1;width:100%}
   .q-actions .btn-ghost{order:2;margin:2px auto 0}
+  .cookie{left:14px;right:14px;bottom:14px;align-items:stretch;flex-direction:column}
+  .cookie-actions{justify-content:stretch}
+  .cookie-btn{flex:1}
 }
 </style>
 </head>
@@ -291,6 +309,13 @@ img{display:block;max-width:100%;height:auto}
           <div class="err-msg">Please select an option.</div></div>
         <div class="field"><label for="notes">Additional Notes <span class="opt">(optional)</span></label>
           <textarea id="notes" name="notes" placeholder="Anything else we should know about your space or schedule?"></textarea></div>
+        <div class="field check-field">
+          <label class="check-label" for="privacyConsent">
+            <input id="privacyConsent" name="privacyConsent" type="checkbox" value="Accepted"/>
+            <span>I agree that BrasilCleaning may use my information to respond to this estimate request, according to the <a href="./privacy.html" target="_blank" rel="noopener">Privacy Policy</a>. <span class="req">*</span></span>
+          </label>
+          <div class="err-msg">Please accept the privacy terms to send your request.</div>
+        </div>
       </div>
 
       <!-- ACTIONS -->
@@ -321,7 +346,15 @@ img{display:block;max-width:100%;height:auto}
   </section>
 </main>
 
-<footer class="qfoot">© 2026 BrasilCleaning · <a href="./index.html">brasilcleaning.com</a> · (954) 274-2055</footer>
+<footer class="qfoot">© 2026 BrasilCleaning · <a href="./index.html">brasilcleaning.com</a> · <a href="./privacy.html">Privacy Policy</a> · <a href="./cookies.html">Cookie Policy</a> · (954) 274-2055</footer>
+
+<div class="cookie" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie preferences">
+  <p><b>Cookie preferences</b>We use necessary cookies to keep the site working and optional analytics to improve the estimate experience. <a href="./cookies.html">Cookie Policy</a></p>
+  <div class="cookie-actions">
+    <button class="cookie-btn" type="button" data-cookie-choice="necessary">Necessary only</button>
+    <button class="cookie-btn primary" type="button" data-cookie-choice="analytics">Accept analytics</button>
+  </div>
+</div>
 
 <script>
 /* ===== EmailJS config — [CONFIGURAR]: replace with the client's real keys ===== */
@@ -334,6 +367,16 @@ const EMAILJS_CONFIG = {
 // completes for preview (no email is sent).
 const EMAILJS_READY = !/^YOUR_/.test(EMAILJS_CONFIG.publicKey) && window.emailjs;
 try { if (EMAILJS_READY) emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey }); } catch(e){}
+
+/* ===== cookie consent ===== */
+const cookieBanner=document.getElementById("cookieBanner");
+if(!window.bcCookieConsent){cookieBanner.classList.add("show");}
+document.querySelectorAll("[data-cookie-choice]").forEach(btn=>btn.addEventListener("click",()=>{
+  window.bcCookieConsent=btn.dataset.cookieChoice;
+  localStorage.setItem("bcCookieConsent",window.bcCookieConsent);
+  cookieBanner.classList.remove("show");
+  window.dataLayer.push({event:"cookie_consent_update",site_name:"BrasilCleaning",choice:window.bcCookieConsent});
+}));
 
 /* fire on load: user opened the estimate form */
 window.bcPushEvent && window.bcPushEvent("click_to_estimate", { page_path: location.pathname });
@@ -379,7 +422,8 @@ function validateStep(i){
     if(!required) return;
     let bad = false;
     const v = (el.value||"").trim();
-    if(!v) bad = true;
+    if(el.type==="checkbox") bad = !el.checked;
+    else if(!v) bad = true;
     else if(el.id==="email") bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
     else if(el.id==="zip") bad = !/^\d{5}$/.test(v);
     else if(el.id==="phone") bad = v.replace(/\D/g,"").length < 10;
