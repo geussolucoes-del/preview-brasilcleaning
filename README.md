@@ -25,7 +25,7 @@ Static site — deploy on **Vercel** by importing this repository. No build step
 - Privacy Policy and Cookie Policy pages added
 - Unverified testimonial placeholders replaced with a service-standard section
 - Contact phone kept minimal in footers and promoted only after form submission
-- Thank-you call CTA pushes `qualified_lead_call_click` to `dataLayer`
+- Thank-you call/text CTA pushes `click_text_or_call` to `dataLayer`
 
 ### Operational note
 - Add the real EmailJS `publicKey`, `serviceId` and `templateId` in `quote.html` before production form emails should be sent. Until then, the form works in preview mode and shows the success state without sending an email.

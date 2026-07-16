@@ -496,12 +496,12 @@ form.addEventListener("submit", e=>{
 document.getElementById("qualifiedCallCta").addEventListener("click",()=>{
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
-    event: "qualified_lead_call_click",
-    conversion_name: "thank_you_call_click",
-    lead_stage: "form_submitted",
-    cta_location: "thank_you",
-    cta_text: "Call / Text (954) 274-2055",
-    phone_number: "+19542742055",
+    event: "click_text_or_call",
+    click_type: "phone_number",
+    click_action: "call_or_text",
+    click_text: "Call / Text (954) 274-2055",
+    click_number: "+19542742055",
+    button_location: "thank_you_page",
     page_path: location.pathname
   });
 });
