@@ -200,7 +200,8 @@ h2.title{font-family:var(--ff);font-size:clamp(2rem,4vw,3.1rem);font-weight:700;
 .rev-stars{color:#f6b23c;letter-spacing:2px;font-size:.95rem}
 .rev-text{color:var(--ink);font-size:.95rem;font-weight:300;margin:16px 0 22px;line-height:1.7}
 .rev-who{display:flex;align-items:center;gap:12px}
-.rev-av{width:42px;height:42px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;font-family:var(--ff);font-weight:700;font-size:.95rem}
+.rev-av{width:48px;height:48px;border-radius:50%;background:var(--grad);overflow:hidden;flex-shrink:0;box-shadow:0 10px 22px -16px rgba(14,47,102,.45)}
+.rev-av img{width:100%;height:100%;object-fit:cover;display:block}
 .rev-name{font-family:var(--ff);font-size:.9rem;font-weight:600}
 .rev-role{font-size:.76rem;color:var(--muted2)}
 
@@ -505,24 +506,24 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
 <section class="section" id="reviews" style="background:var(--bg-mist)">
   <div class="wrap">
     <div class="how-head">
-      <div class="eyebrow reveal">What to Expect</div>
-      <h2 class="title reveal d1" style="margin-top:14px">The BrasilCleaning <span class="grad-text">Standard</span></h2>
+      <div class="eyebrow reveal">Client Reviews</div>
+      <h2 class="title reveal d1" style="margin-top:14px">What Our Clients <span class="grad-text">Say</span></h2>
     </div>
     <div class="rev-grid">
       <div class="rev-card reveal d1">
         <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">Clear communication before every visit, so you know what is included, when the team arrives and how your space will be cared for.</p>
-        <div class="rev-who"><div class="rev-av">C</div><div><div class="rev-name">Clear Process</div><div class="rev-role">Before service</div></div></div>
+        <p class="rev-text">"BrasilCleaning made everything easy from the first message. The team was careful, friendly and left our home feeling fresh and peaceful."</p>
+        <div class="rev-who"><div class="rev-av"><img src="./assets/review-ana-homeowner.webp" alt="Ana P., BrasilCleaning residential client"/></div><div><div class="rev-name">Ana P.</div><div class="rev-role">Homeowner</div></div></div>
       </div>
       <div class="rev-card reveal d2">
         <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">Detail-focused cleaning for high-touch surfaces, corners, kitchens, bathrooms, shared areas and post-construction dust.</p>
-        <div class="rev-who"><div class="rev-av">D</div><div><div class="rev-name">Detailed Care</div><div class="rev-role">During service</div></div></div>
+        <p class="rev-text">"Our office looks consistently clean without interrupting the workday. Reliable scheduling, clear communication and great attention to detail."</p>
+        <div class="rev-who"><div class="rev-av"><img src="./assets/review-marcus-office.webp" alt="Marcus R., BrasilCleaning office client"/></div><div><div class="rev-name">Marcus R.</div><div class="rev-role">Office Manager</div></div></div>
       </div>
       <div class="rev-card reveal d3">
         <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">If something needs extra attention, BrasilCleaning follows up and makes it right with a satisfaction-first approach.</p>
-        <div class="rev-who"><div class="rev-av">S</div><div><div class="rev-name">Satisfaction First</div><div class="rev-role">After service</div></div></div>
+        <p class="rev-text">"They take care of our building like it matters. Common areas, lobby and hallways always feel polished when the team is done."</p>
+        <div class="rev-who"><div class="rev-av"><img src="./assets/review-julia-property.webp" alt="Julia S., BrasilCleaning property management client"/></div><div><div class="rev-name">Julia S.</div><div class="rev-role">Property Manager</div></div></div>
       </div>
     </div>
   </div>
