@@ -74,7 +74,7 @@ img{display:block;max-width:100%;height:auto}
 .q-point-ico{width:34px;height:34px;border-radius:9px;background:var(--grad-soft);display:grid;place-items:center;color:var(--green-d);flex-shrink:0}
 .q-aside-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px 22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:3px;max-width:320px}
 .q-aside-card span{font-family:var(--ff);font-size:.6rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted2)}
-.q-aside-card a{font-family:var(--ff);font-size:1.35rem;font-weight:700;color:var(--ink)}
+.q-aside-card strong{font-family:var(--ff);font-size:1rem;font-weight:700;color:var(--ink)}
 .q-aside-card small{color:var(--muted);font-size:.8rem}
 
 /* form card */
@@ -131,7 +131,10 @@ img{display:block;max-width:100%;height:auto}
 .q-success-ico{width:74px;height:74px;border-radius:50%;background:var(--grad);display:grid;place-items:center;color:#fff;margin:0 auto 22px;box-shadow:0 16px 34px -14px rgba(31,111,178,.6)}
 .q-success h2{font-family:var(--ff);font-size:1.7rem;font-weight:800;letter-spacing:-.5px;margin-bottom:10px}
 .q-success p{color:var(--muted);font-weight:300;max-width:400px;margin:0 auto 26px}
-.q-success .btn-p{margin:0 auto}
+.q-success-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.q-success .btn-p{margin:0}
+.btn-call{display:inline-flex;align-items:center;justify-content:center;gap:9px;white-space:nowrap;background:#fff;color:var(--green-d);padding:14px 24px;border:1px solid var(--border);border-radius:100px;font-family:var(--ff);font-size:.86rem;font-weight:700;transition:transform .2s,box-shadow .2s;box-shadow:0 12px 28px -18px rgba(14,47,102,.34)}
+.btn-call:hover{transform:translateY(-2px);box-shadow:0 18px 34px -20px rgba(14,47,102,.45)}
 
 /* footer */
 .qfoot{text-align:center;padding:26px 20px 30px;color:var(--muted2);font-size:.78rem}
@@ -195,9 +198,9 @@ img{display:block;max-width:100%;height:auto}
       <li class="q-point"><span class="q-point-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M8 12l2.5 2.5L16 9"/></svg></span>100% satisfaction guarantee</li>
     </ul>
     <div class="q-aside-card">
-      <span>Prefer to talk?</span>
-      <a href="tel:19542742055">(954) 274-2055</a>
-      <small>Call or text — Rosangela Souza</small>
+      <span>Next step</span>
+      <strong>Submit your request</strong>
+      <small>Rosangela will receive the details and follow up with your estimate.</small>
     </div>
   </aside>
 
@@ -338,15 +341,21 @@ img{display:block;max-width:100%;height:auto}
     <div class="q-success" id="success">
       <div class="q-success-ico"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg></div>
       <h2>Request received!</h2>
-      <p>Thank you — we've got your details and will reach out shortly with your free estimate. Prefer to talk now? Text or call us.</p>
-      <a class="btn-p" href="./index.html">Back to Home
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+      <p>Thank you — we've got your details and will reach out shortly with your free estimate. If you want to speak with Rosangela now, call or text below.</p>
+      <div class="q-success-actions">
+        <a class="btn-call" id="qualifiedCallCta" href="tel:19542742055" data-conversion-cta="thank-you-call">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.63 2.63a2 2 0 0 1-.45 2.11L8 9.75a16 16 0 0 0 6.25 6.25l1.29-1.29a2 2 0 0 1 2.11-.45c.85.3 1.73.51 2.63.63A2 2 0 0 1 22 16.92z"/></svg>
+          Call / Text (954) 274-2055
+        </a>
+        <a class="btn-p" href="./index.html">Back to Home
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
     </div>
   </section>
 </main>
 
-<footer class="qfoot">© 2026 BrasilCleaning · <a href="./index.html">brasilcleaning.com</a> · <a href="./privacy.html">Privacy Policy</a> · <a href="./cookies.html">Cookie Policy</a> · (954) 274-2055</footer>
+<footer class="qfoot">© 2026 BrasilCleaning · <a href="./index.html">brasilcleaning.com</a> · <a href="./privacy.html">Privacy Policy</a> · <a href="./cookies.html">Cookie Policy</a> · <a href="tel:19542742055">(954) 274-2055</a></footer>
 
 <div class="cookie" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie preferences">
   <p><b>Cookie preferences</b>We use necessary cookies to keep the site working and optional analytics to improve the estimate experience. <a href="./cookies.html">Cookie Policy</a></p>
@@ -477,11 +486,24 @@ form.addEventListener("submit", e=>{
   if(EMAILJS_READY){
     emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, data)
       .then(finish)
-      .catch(()=>{ submitBtn.disabled=false; submitBtn.firstChild.textContent="Get My Free Estimate "; alert("Something went wrong sending your request. Please call or text us at (954) 274-2055."); });
+      .catch(()=>{ submitBtn.disabled=false; submitBtn.firstChild.textContent="Get My Free Estimate "; alert("Something went wrong sending your request. Please try again in a moment."); });
   } else {
     // preview mode (placeholder keys): complete without sending
     setTimeout(finish, 500);
   }
+});
+
+document.getElementById("qualifiedCallCta").addEventListener("click",()=>{
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: "qualified_lead_call_click",
+    conversion_name: "thank_you_call_click",
+    lead_stage: "form_submitted",
+    cta_location: "thank_you",
+    cta_text: "Call / Text (954) 274-2055",
+    phone_number: "+19542742055",
+    page_path: location.pathname
+  });
 });
 
 render();
