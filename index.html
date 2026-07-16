@@ -158,11 +158,12 @@ h2.title{font-family:var(--ff);font-size:clamp(2rem,4vw,3.1rem);font-weight:700;
 /* ═══ WELL-BEING (why) ═══ */
 .wb{background:linear-gradient(180deg,#fff,var(--bg-mist))}
 .wb-inner{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
-.wb-visual{position:relative;border-radius:26px;background:var(--grad);aspect-ratio:1/1;box-shadow:0 40px 80px -34px rgba(14,47,102,.5);overflow:hidden;display:grid;place-items:center;padding:40px}
-.wb-visual::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.14) 1.5px,transparent 1.5px);background-size:26px 26px}
-.wb-stat-badge{position:relative;z-index:2;text-align:center;color:#fff}
-.wb-stat-badge .big{font-family:var(--ff);font-size:clamp(3rem,7vw,5rem);font-weight:800;line-height:1}
-.wb-stat-badge .lbl{font-family:var(--ff);font-size:.9rem;font-weight:500;opacity:.92;letter-spacing:.5px;margin-top:8px}
+.wb-visual{position:relative;border-radius:26px;background:var(--grad);aspect-ratio:4/5;box-shadow:0 40px 80px -34px rgba(14,47,102,.5);overflow:hidden;display:grid;place-items:end start;padding:30px}
+.wb-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% center}
+.wb-visual::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(14,34,51,0) 38%,rgba(14,34,51,.72) 100%),linear-gradient(90deg,rgba(31,107,50,.18),transparent 46%)}
+.wb-stat-badge{position:relative;z-index:2;text-align:left;color:#fff;background:rgba(14,34,51,.46);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);border-radius:18px;padding:18px 20px;box-shadow:0 20px 44px -28px rgba(0,0,0,.55)}
+.wb-stat-badge .big{font-family:var(--ff);font-size:clamp(2.7rem,6vw,4.4rem);font-weight:800;line-height:1}
+.wb-stat-badge .lbl{font-family:var(--ff);font-size:.86rem;font-weight:500;opacity:.92;letter-spacing:.5px;margin-top:8px}
 .wb-list{list-style:none;margin-top:34px;display:flex;flex-direction:column;gap:22px}
 .wb-item{display:flex;gap:18px}
 .wb-item-ico{width:46px;height:46px;border-radius:12px;background:var(--grad-soft);display:grid;place-items:center;color:var(--green-d);flex-shrink:0}
@@ -406,6 +407,7 @@ footer{background:var(--bg-mist);color:var(--muted);padding:64px 0 30px;border-t
 <section class="section wb" id="wellbeing">
   <div class="wrap wb-inner">
     <div class="wb-visual reveal">
+      <img class="wb-photo" src="./assets/service-uniform-cleaning.webp" alt="BrasilCleaning team member cleaning glass in a modern office"/>
       <div class="wb-stat-badge">
         <div class="big" data-count>100%</div>
         <div class="lbl">Satisfaction Guaranteed</div>
