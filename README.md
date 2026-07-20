@@ -26,6 +26,11 @@ Static site — deploy on **Vercel** by importing this repository. No build step
 - Unverified testimonial placeholders replaced with a service-standard section
 - Contact phone kept minimal in footers and promoted only after form submission
 - Thank-you call/text CTA pushes `click_text_or_call` to `dataLayer`
+- SEO metadata, canonical URLs and social sharing previews on every page
+- `WebSite` and `LocalBusiness` JSON-LD with Broward County service coverage
+- Search crawler discovery through `robots.txt` and `sitemap.xml`
 
 ### Operational note
 - Add the real EmailJS `publicKey`, `serviceId` and `templateId` in `quote.html` before production form emails should be sent. Until then, the form works in preview mode and shows the success state without sending an email.
+- After the Google Business Profile is verified, keep its business name, phone, website and service area consistent with the site. Add only confirmed address, hours and profile links to the structured data.
+- Add the site to Google Search Console and submit `https://brasilcleaning.com/sitemap.xml` after the production domain points to this deployment.
