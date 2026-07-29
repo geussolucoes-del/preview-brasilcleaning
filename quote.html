@@ -37,7 +37,8 @@
 window.dataLayer = window.dataLayer || [];
 window.bcCookieConsent = localStorage.getItem("bcCookieConsent") || "";
 window.bcPushEvent = window.bcPushEvent || function(eventName, payload){
-  if(eventName !== "cookie_consent_update" && window.bcCookieConsent !== "analytics") return;
+  var alwaysOn = ["cookie_consent_update","click_to_estimate","form_step_2","form_submit","click_text_or_call"];
+  if(alwaysOn.indexOf(eventName) === -1 && window.bcCookieConsent !== "analytics") return;
   window.dataLayer.push(Object.assign({ event: eventName, site_name: "BrasilCleaning" }, payload || {}));
 };
 </script>
@@ -486,7 +487,18 @@ document.getElementById("phone").addEventListener("input", e=>{
 });
 document.getElementById("zip").addEventListener("input", e=>{ e.target.value = e.target.value.replace(/\D/g,"").slice(0,5); });
 
-nextBtn.addEventListener("click", ()=>{ if(validateStep(current)){ current++; render(); window.scrollTo({top:0,behavior:"smooth"}); }});
+let step2Fired = false;
+nextBtn.addEventListener("click", ()=>{
+  if(validateStep(current)){
+    current++;
+    if(current === 1 && !step2Fired){
+      step2Fired = true;
+      window.bcPushEvent && window.bcPushEvent("form_step_2", { page_path: location.pathname });
+    }
+    render();
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+});
 backBtn.addEventListener("click", ()=>{ current--; render(); });
 
 form.addEventListener("submit", e=>{
