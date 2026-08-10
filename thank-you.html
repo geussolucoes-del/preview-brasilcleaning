@@ -31,19 +31,33 @@ window.bcPushEvent = window.bcPushEvent || function(eventName, payload){
 };
 
 (function(){
-  var key = "bcQualifiedLeadConversion";
-  var raw = sessionStorage.getItem(key);
-  sessionStorage.removeItem(key);
-  if(!raw) return;
+  var authorizationKey = "bcLeadConversionAuthorized";
+  var transactionKey = "bcLeadTransactionId";
+  var serviceKey = "bcLeadService";
+  var authorizationRaw = sessionStorage.getItem(authorizationKey);
+  var transaction_id = sessionStorage.getItem(transactionKey) || "";
+  var service = sessionStorage.getItem(serviceKey) || "";
 
   try {
-    var marker = JSON.parse(raw);
-    if(!marker.createdAt || Date.now() - marker.createdAt > 30 * 60 * 1000) return;
-    window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
-    window.gtag("event", "conversion", {
-      send_to: "AW-18364553915/VTj-CJOsI9ocELu187RE"
+    var authorization = authorizationRaw ? JSON.parse(authorizationRaw) : null;
+    var validAuthorization = authorization && authorization.authorized === true &&
+      authorization.createdAt && Date.now() - authorization.createdAt <= 30 * 60 * 1000;
+    var validTransactionId = /^bc-[a-z0-9-]+$/.test(transaction_id) && transaction_id.length <= 64;
+    if(!validAuthorization || !validTransactionId) return;
+
+    window.dataLayer.push({
+      event: "lead_submit_success",
+      transaction_id: transaction_id,
+      site_name: "BrasilCleaning",
+      page_path: "/thank-you.html",
+      service: service
     });
-  } catch(e) {}
+  } catch(e) {
+  } finally {
+    sessionStorage.removeItem(authorizationKey);
+    sessionStorage.removeItem(transactionKey);
+    sessionStorage.removeItem(serviceKey);
+  }
 })();
 </script>
 

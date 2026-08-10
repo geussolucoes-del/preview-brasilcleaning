@@ -504,7 +504,13 @@ form.addEventListener("submit", e=>{
 
   const data = Object.fromEntries(new FormData(form).entries());
   const finish = ()=>{
-    sessionStorage.setItem("bcQualifiedLeadConversion", JSON.stringify({ createdAt: Date.now() }));
+    const randomPart = window.crypto && typeof window.crypto.randomUUID === "function"
+      ? window.crypto.randomUUID().replace(/-/g, "")
+      : Array.from(window.crypto.getRandomValues(new Uint32Array(4)), value=>value.toString(36)).join("");
+    const transaction_id = `bc-${Date.now().toString(36)}-${randomPart}`.slice(0, 64);
+    sessionStorage.setItem("bcLeadConversionAuthorized", JSON.stringify({ authorized: true, createdAt: Date.now() }));
+    sessionStorage.setItem("bcLeadTransactionId", transaction_id);
+    sessionStorage.setItem("bcLeadService", data.service || "");
     let redirecting = false;
     const redirect = ()=>{
       if(redirecting) return;
