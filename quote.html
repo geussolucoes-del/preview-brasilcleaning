@@ -104,7 +104,7 @@ img{display:block;max-width:100%;height:auto}
 .q-aside-card small{color:var(--muted);font-size:.8rem}
 
 /* form card */
-.q-panel{background:#fff;border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+.q-panel{background:#fff;border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:18px}
 .q-progress{display:flex;gap:8px;padding:22px 30px 0}
 .q-pbar{flex:1;height:5px;border-radius:5px;background:var(--border);overflow:hidden}
 .q-pbar i{display:block;height:100%;width:0;background:var(--grad);transition:width .4s var(--ease)}
@@ -113,7 +113,7 @@ img{display:block;max-width:100%;height:auto}
 .q-step{display:none;animation:qfade .35s var(--ease)}
 .q-step.active{display:block}
 @keyframes qfade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.q-step-title{font-family:var(--ff);font-size:1.25rem;font-weight:700;margin:22px 0 4px}
+.q-step-title{font-family:var(--ff);font-size:1.25rem;font-weight:700;margin:22px 0 4px;scroll-margin-top:18px}
 .q-step-sub{color:var(--muted);font-size:.88rem;font-weight:300;margin-bottom:22px}
 .q-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .field{margin-bottom:16px}
@@ -435,6 +435,13 @@ function render(){
   form.querySelector(".q-step.active input,.q-step.active select")?.focus({preventScroll:true});
 }
 
+function scrollToActiveStep(){
+  const target = window.matchMedia("(max-width: 880px)").matches
+    ? form.querySelector(".q-step.active .q-step-title")
+    : document.querySelector(".q-panel");
+  requestAnimationFrame(()=>target?.scrollIntoView({behavior:"smooth",block:"start"}));
+}
+
 function markBad(field, bad){ field.classList.toggle("bad", bad); }
 
 function validateStep(i){
@@ -492,10 +499,10 @@ nextBtn.addEventListener("click", ()=>{
       window.bcPushEvent && window.bcPushEvent("form_step_2", { page_path: location.pathname });
     }
     render();
-    window.scrollTo({top:0, behavior:"smooth"});
+    scrollToActiveStep();
   }
 });
-backBtn.addEventListener("click", ()=>{ current--; render(); });
+backBtn.addEventListener("click", ()=>{ current--; render(); scrollToActiveStep(); });
 
 form.addEventListener("submit", e=>{
   e.preventDefault();
